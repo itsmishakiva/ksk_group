@@ -8,13 +8,31 @@ on:
     
 jobs:
   analyze:
+    strategy:
+      matrix:
+        target: ['iOS', 'android']
+        include:
+          - target: android
+            os: ubuntu-latest
+            java-version: '11'
+          - target: iOS
+            os: macos-latest
     name: Analyze app
-    runs-on: platform
+    runs-on: ${{ matrix.os }}
     steps: 
       - run: flutter pub get
       - run: dart analyze --no-fatal-infos
       - run: dart format lib --set-exit-if-changed .
   test:
-    runs-on: platform
+    strategy:
+      matrix:
+        target: ['iOS', 'android']
+        include:
+          - target: android
+            os: ubuntu-latest
+            java-version: '11'
+          - target: iOS
+            os: macos-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - run: flutter test

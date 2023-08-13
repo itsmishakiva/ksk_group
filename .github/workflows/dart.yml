@@ -8,13 +8,13 @@ on:
     
 jobs:
   analyze:
-    name: Analyze ${{ matrix.target }} app
-    runs-on: ${{ matrix.os }}
+    name: Analyze app
+    runs-on: platform
     steps: 
       - run: flutter pub get
       - run: dart analyze --no-fatal-infos
       - run: dart format lib --set-exit-if-changed .
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: platform
     steps:
       - run: flutter test

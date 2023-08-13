@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ksk_group/features/loading/view/loading_screen.dart';
 
 void main() {
   runApp(const App());
@@ -9,6 +10,8 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp();
+    return const MaterialApp(
+      home: LoadingScreen(),
+    );
   }
 }

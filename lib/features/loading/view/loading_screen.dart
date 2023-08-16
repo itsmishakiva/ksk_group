@@ -9,8 +9,9 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(
+      value: const SystemUiOverlayStyle(
         statusBarBrightness: Brightness.dark,
+        statusBarColor: Colors.white,
       ),
       child: Scaffold(
         body: Container(

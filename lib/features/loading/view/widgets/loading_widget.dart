@@ -10,8 +10,11 @@ class LoadingWidget extends StatefulWidget {
 
 class _LoadingWidgetState extends State<LoadingWidget>
     with SingleTickerProviderStateMixin {
-  late final AnimationController animationController =
-      AnimationController(vsync: this, upperBound: 8, lowerBound: 0);
+  late final AnimationController animationController = AnimationController(
+    vsync: this,
+    upperBound: 8,
+    lowerBound: 0,
+  );
 
   @override
   void initState() {
@@ -30,7 +33,9 @@ class _LoadingWidgetState extends State<LoadingWidget>
       animation: animationController,
       builder: (context, child) {
         return CustomPaint(
-          painter: LoadingPainter(start: animationController.value),
+          painter: LoadingPainter(
+            start: animationController.value,
+          ),
         );
       },
     );

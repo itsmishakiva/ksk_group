@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:ksk_group/features/loading/view/widgets/loading_painter.dart';
 import 'package:ksk_group/features/loading/view/widgets/loading_widget.dart';
 
 class LoadingScreen extends StatelessWidget {

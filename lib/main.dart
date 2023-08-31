@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ksk_group/features/auth/presentation/view/pages/auth_screen.dart';
 import 'package:ksk_group/features/loading/view/loading_screen.dart';
 
 void main() {
@@ -11,7 +12,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: LoadingScreen(),
+      home: AuthPage(),
     );
   }
 }

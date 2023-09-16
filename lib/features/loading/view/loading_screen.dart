@@ -16,8 +16,8 @@ class LoadingScreen extends StatelessWidget {
         body: Container(
           decoration: const BoxDecoration(
             gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
+              begin: AlignmentDirectional(0.5, 0.5),
+              end: AlignmentDirectional(0.7, 0.7),
               colors: [
                 Color(0xFF205686),
                 Color(0xFF5187B8),

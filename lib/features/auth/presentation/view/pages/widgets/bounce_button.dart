@@ -1,10 +1,9 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 class BouncingButton extends StatefulWidget {
   final Function func;
 
-  BouncingButton({required this.func});
+  const BouncingButton({required this.func, super.key});
 
   @override
   BouncingButtonState createState() => BouncingButtonState();
@@ -12,13 +11,13 @@ class BouncingButton extends StatefulWidget {
 
 class BouncingButtonState extends State<BouncingButton>
     with SingleTickerProviderStateMixin {
-  late double scale;
-  late AnimationController controller;
-  Duration duration = const Duration(milliseconds: 400);
+  late final AnimationController animationController;
+  static const duration = Duration(milliseconds: 400);
 
   @override
   void initState() {
-    controller = AnimationController(
+    super.initState();
+    animationController = AnimationController(
       vsync: this,
       duration: const Duration(
         milliseconds: 400,
@@ -29,37 +28,36 @@ class BouncingButtonState extends State<BouncingButton>
       lowerBound: 0.9,
       upperBound: 1,
     );
-    super.initState();
   }
 
   @override
   void dispose() {
+    animationController.dispose();
     super.dispose();
-    controller.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    controller.animateTo(controller.upperBound, duration: Duration.zero);
+    animationController.animateTo(animationController.upperBound, duration: Duration.zero);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: GestureDetector(
         onTapCancel: () {
-          controller.animateTo(controller.upperBound);
+          animationController.animateTo(animationController.upperBound);
         },
         onTapDown: (TapDownDetails details) {
-          controller.animateTo(controller.lowerBound);
+          animationController.animateTo(animationController.lowerBound);
           widget.func();
-          controller.addListener;
+          animationController.addListener;
         },
         onTapUp: (TapUpDetails details) {
-          controller.animateTo(controller.upperBound);
+          animationController.animateTo(animationController.upperBound);
         },
         child: AnimatedBuilder(
-          animation: controller,
+          animation: animationController,
           builder: (context, child) {
             return Transform.scale(
-              scale: controller.value,
+              scale: animationController.value,
               child: child,
             );
           },
@@ -70,19 +68,19 @@ class BouncingButtonState extends State<BouncingButton>
                   color: Colors.black.withOpacity(0.2),
                   spreadRadius: 5,
                   blurRadius: 7,
-                  offset: Offset(0, 3), // changes position of shadow
+                  offset: const Offset(0, 3), // changes position of shadow
                 ),
               ],
-              color: Color(0xFF276AA7),
-              borderRadius: BorderRadius.all(
+              color: const Color(0xFF276AA7),
+              borderRadius: const BorderRadius.all(
                 Radius.circular(16),
               ),
             ),
             height: 60,
             width: 323,
-            child: Center(
+            child: const Center(
               child: Text(
-                "Войти",
+                'Войти',
                 style: TextStyle(
                   fontSize: 25,
                   fontWeight: FontWeight.w600,
@@ -96,11 +94,3 @@ class BouncingButtonState extends State<BouncingButton>
     );
   }
 }
-
-/*onTap: (){
-          controller.animateTo(controller.lowerBound);
-          Future.delayed(duration, () {
-            controller.animateTo(controller.upperBound);
-          });
-          func();
-        },*/
